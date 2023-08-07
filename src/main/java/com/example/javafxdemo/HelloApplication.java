@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application  {
+public class HelloApplication extends Application implements EventHandler<ActionEvent> {
     public static void main(String[] args) {
         launch();
     }
@@ -23,8 +23,10 @@ public class HelloApplication extends Application  {
         BorderPane borderPane = new BorderPane();
 
         Button button = new Button("Click me!");
+        Button button1 = new Button("Click me 1");
 
         borderPane.setCenter(button);
+        borderPane.setBottom(button1);
 
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -33,7 +35,7 @@ public class HelloApplication extends Application  {
             }
         });
 
-//        button.setOnAction(this);
+        button1.setOnAction(this);
 
         Scene scene = new Scene(borderPane, 320, 240);
 //        stage.setTitle("Hello!");
@@ -41,4 +43,8 @@ public class HelloApplication extends Application  {
         stage.show();
     }
 
+    @Override
+    public void handle(ActionEvent actionEvent) {
+        System.out.println("Hello for button1");
+    }
 }
